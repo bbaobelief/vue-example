@@ -88,7 +88,7 @@
             },
             del: function () {
                 var tmp = this.items;
-                this.items = []
+                this.items = [];
                 for (var i = 0; i < tmp.length; i++) {
                     if ( !tmp[i].show) {
                         this.items.push(tmp[i])
@@ -96,7 +96,6 @@
                 }
             },
             edit: function (i) {
-                console.log(i)
                 if (this.items[i].show) {
                     return;
                 }
