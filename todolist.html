@@ -28,13 +28,14 @@
         }
 
         .finish {
-            text-decoration:line-through;
+            text-decoration: line-through;
             color: #ccc;
         }
 
         .add {
             margin-left: 10px;
         }
+
         .del {
             color: blue;
         }
@@ -46,13 +47,15 @@
         <h1>任务列表</h1>
         <p>任务总数：{{ items.length }}；未完成：{{ Unfinished() }}； <span class="del" @click="del()">[删除完成任务]</span></p>
         <ul>
-        <li v-for="(item, index) in items" v-bind:class="{'finish': item.show}">
-            <input type="checkbox" v-model="item.show">
-            <span v-text="item.name" v-show="!item.edit" @click='edit(index)'></span>
-            <input type="text" v-model='item.name' v-show='item.edit' v-on:keyup.13='item.edit = !item.edit' @blur='item.edit = false'>
-        </li>
+            <li v-for="(item, index) in items" v-bind:class="{'finish': item.show}">
+                <input type="checkbox" v-model="item.show">
+                <span v-text="item.name" v-show="!item.edit" @click='edit(index)'></span>
+                <input type="text" v-model='item.name' v-show='item.edit' v-on:keyup.13='item.edit = !item.edit'
+                       @blur='item.edit = false'>
+            </li>
         </ul>
-        <input type="text" v-model="res" placeholder="请输入任务名称"><button v-on:click="add()" class="add">添加</button>
+        <input type="text" v-model="res" placeholder="请输入任务名称">
+        <button v-on:click="add()" class="add">添加</button>
         <!--<p>Message is: {{ res }}</p>-->
     </div>
 </div>
@@ -62,11 +65,11 @@
         el: '#app',
         data: {
             items: [
-                {name: '11111', show: false, edit:false},
-                {name: '22222', show: false, edit:false},
-                {name: '33333', show: false, edit:false},
-                {name: '66666', show: false, edit:false},
-                {name: '55555', show: false, edit:false},
+                {name: '11111', show: false, edit: false},
+                {name: '22222', show: false, edit: false},
+                {name: '33333', show: false, edit: false},
+                {name: '66666', show: false, edit: false},
+                {name: '55555', show: false, edit: false},
             ],
             res: ''
         },
@@ -75,9 +78,9 @@
                 item.show = !item.show
             },
             Unfinished: function () {
-                var num = 0;
-                this.items.forEach(function (i){
-                    if( !i.show ){
+                let num = 0;
+                this.items.forEach(function (item) {
+                    if (!item.show) {
                         num += 1;
                     }
                 });
@@ -87,10 +90,10 @@
                 this.items.push({name: this.res, show: false})
             },
             del: function () {
-                var tmp = this.items;
+                let tmp = this.items;
                 this.items = [];
-                for (var i = 0; i < tmp.length; i++) {
-                    if ( !tmp[i].show) {
+                for (let i = 0; i < tmp.length; i++) {
+                    if (!tmp[i].show) {
                         this.items.push(tmp[i])
                     }
                 }
