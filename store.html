@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Store</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <style>
+        #app {
+            background-color: #74a0c1;
+            margin: 0 auto;
+            width: 400px;
+            height: 400px;
+            padding: 5px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        ul {
+            margin: 0px 50px;
+            padding-left: 0px;
+        }
+
+        li {
+            margin-bottom: 10px;
+            background-color: #d06093;
+            line-height: 40px;
+            padding-left: 20px;
+            list-style: none;
+        }
+
+        span {
+            padding-right: 20px;
+            float: right;
+        }
+
+        .active {
+            background-color: #94be75;
+        }
+
+        .content {
+            margin: 0px 50px;
+            padding-left: 20px;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <h1>Store</h1>
+    <ul>
+        <li v-for="(item, index) in items" :class="{'active': item.show}" @click="add(item)">{{ item.name }} <span>{{ item.price }}</span>
+        </li>
+    </ul>
+    <p class="content" style="background-color: #74a0c1;">Total: <span>{{ prices() }}</span></p>
+</div>
+</body>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            items: [
+                {name: 'iphone x', price: 9000, show: false},
+                {name: 'iphone 8 plus', price: 6000, show: false},
+                {name: 'iphone 7', price: 5000, show: false},
+                {name: 'iphone 6', price: 3000, show: false},
+                {name: 'iphone 4', price: 1000, show: false},
+            ],
+        },
+        methods: {
+            add: function (item) {
+                item.show = !item.show
+            },
+            prices: function () {
+                var price = 0;
+                for (var i = 0; i < this.items.length; i++) {
+                    if ( this.items[i].show) {
+                        price += this.items[i].price
+                    }
+                }
+                return price
+            }
+        }
+    })
+</script>
+</html>

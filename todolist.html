@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>todo</title>
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <!-- 先引入 Vue -->
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <!-- 引入组件库 -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <style>
+        .bg-purple-light {
+            background: #e5e9f2;
+        }
+
+        .grid-content {
+            border-radius: 4px;
+            min-height: 400px;
+            margin-top: 50px;
+            padding: 20px;
+        }
+        .add {
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <el-row :gutter="10">
+        <el-col :span="6">
+            <div class="grid-content"></div>
+        </el-col>
+        <el-col :span="12">
+            <div class="grid-content bg-purple-light">
+                <h1>任务列表</h1>
+                <p>任务总数：{{ items.length }}；未完成：3； <span>完成</span></p>
+                <ul>
+                    <li v-for="item in items"><input type="checkbox"><span v-text="item"></span></li>
+                </ul>
+                <input type="text"><button v-on:click="add()" class="add">添加</button>
+            </div>
+        </el-col>
+        <el-col :span="6">
+            <div class="grid-content"></div>
+        </el-col>
+    </el-row>
+</div>
+</body>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            items: ["11", "22", "33"]
+        },
+        methods: {
+            add: function () {
+                console.log(11111111)
+            }
+
+        }
+    })
+</script>
+</html>
