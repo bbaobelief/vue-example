@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue-resource</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/vue.resource/1.0.3/vue-resource.min.js"></script>
+</head>
+<body>
+<div id="app">
+    <h1>vue-resource</h1>
+    <button @click="search">search</button>
+</div>
+</body>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            github: 'https://api.github.com/repos/vmg/redcarpet/issues',
+        },
+        methods: {
+            search: function () {
+                // 文件请求
+                // this.$http.get('./test.txt').then(function (response) {
+                //     console.log(response.status, response.data)
+                // }, function (response) {
+                //     console.log(response.status, 'error')
+                // });
+
+                // get请求
+                // this.$http.get(this.github, {params: {state: 'closed'}}).then(function (response) {
+                //     console.log(response.status, response.data);
+                //     console.log(response.data[1].url);
+                // }, function (response) {
+                //     console.log(response.status, 'error');
+                // });
+                // post请求
+                this.$http.post(this.github, {foo: 'bar'}).then((response) => {
+                    // get status
+                    response.status;
+                    // get status text
+                    response.statusText;
+                    // get 'Expires' header
+                    response.headers.get('Expires');
+                    // set data on vm
+                    this.$set('someData', response.body);
+                }, (response) => {
+                    // error callback
+                });
+            }
+        }
+    })
+</script>
+</html>
