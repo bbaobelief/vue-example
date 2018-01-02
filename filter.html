@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+<h1>{{ name | hello }}</h1>
+<h1>{{ age | num | hello}}</h1>
+</div>
+
+</body>
+<script>
+    // 定义在全局
+    Vue.filter('hello', function(val) {
+        return "hello " + val;
+    });
+
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            name: 'opdev.cn',
+            age: 20,
+        },
+        //自定义在实例
+        filters: {
+            num: function(val) {
+                return 'age:' + val;
+            }
+        }
+    });
+</script>
+</html>

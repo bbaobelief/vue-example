@@ -28,25 +28,25 @@
                 // });
 
                 // get请求
-                // this.$http.get(this.github, {params: {state: 'closed'}}).then(function (response) {
-                //     console.log(response.status, response.data);
-                //     console.log(response.data[1].url);
-                // }, function (response) {
-                //     console.log(response.status, 'error');
-                // });
-                // post请求
-                this.$http.post(this.github, {foo: 'bar'}).then((response) => {
-                    // get status
-                    response.status;
-                    // get status text
-                    response.statusText;
-                    // get 'Expires' header
-                    response.headers.get('Expires');
-                    // set data on vm
-                    this.$set('someData', response.body);
-                }, (response) => {
-                    // error callback
+                this.$http.get(this.github, {params: {state: 'closed'}}).then(function (response) {
+                    console.log(response.status, response.data);
+                    console.log(response.data[1].url);
+                }, function (response) {
+                    console.log(response.status, 'error');
                 });
+                // post请求
+                // this.$http.post(this.github, {foo: 'bar'}).then((response) => {
+                //     // get status
+                //     response.status;
+                //     // get status text
+                //     response.statusText;
+                //     // get 'Expires' header
+                //     response.headers.get('Expires');
+                //     // set data on vm
+                //     this.$set('someData', response.body);
+                // }, (response) => {
+                //     // error callback
+                // });
             }
         }
     })
