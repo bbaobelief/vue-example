@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Search</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/vue.resource/1.0.3/vue-resource.min.js"></script>
+    <style type="text/css">
+        .gray {background-color: #ccc}
+    </style>
+</head>
+<body>
+<div id="app">
+    <h1>{{ title }}</h1>
+    <input type="text" v-model="wd" @keydown.up.prevent="up()" @keydown.down="down()"></input>
+    <button @click="search">search</button>
+    <ul>
+        <li v-for="(item, index) in arr" :class="{gray: index==nowIndex}">{{ item }}</li>
+    </ul>
+</div>
+</body>
+<script type="text/javascript">
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            arr: [],
+            title: 'Search',
+            wd: '',
+            nowIndex: -1,
+        },
+        methods: {
+            search: function () {
+                this.$http.jsonp('https://sug.so.360.cn/suggest',
+                    {params: {word: this.wd}
+                }).then(function (res) {
+                    this.arr = res.data.s
+                    });
+            },
+            up: function () {
+                this.nowIndex --;
+                if (this.nowIndex < 0){
+                    this.nowIndex = this.arr.length -1
+                }
+            },
+            down: function () {
+                this.nowIndex ++;
+                if (this.nowIndex > this.arr.length-1){
+                    this.nowIndex = -1
+                }
+            }
+        }
+    })
+</script>
+</html>
